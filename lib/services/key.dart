@@ -1,0 +1,3 @@
+final apiKey = "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";
+final apiKeyOpenRouter = "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";
+final apikeyDeepSeek = "sk-e46274d3a12b40b0984c5c59a1d695c0";
