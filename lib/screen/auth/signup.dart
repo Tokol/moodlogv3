@@ -26,33 +26,42 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void _handleSignUp() async {
+    // Validate the form fields
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;
         _errorMessage = null;
       });
 
+      // Attempt to sign up using AuthService
       String? result = await _authService.signUp(
-        _emailController.text,
-        _passwordController.text,
+        _emailController.text.trim(),
+        _passwordController.text.trim(),
       );
 
       setState(() {
         _isLoading = false;
-        _errorMessage = result;
       });
 
       if (result == null) {
-        // Navigate to dashboard on successful signup
-        Navigator.pushNamed(context, 'dash');
+        // ✅ Sign-up successful
+        // You can also show a success message if desired
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Sign-up successful! Please log in.")),
+        );
+
+        // Redirect to SignIn screen
+        Navigator.pushReplacementNamed(context, 'signin');
       } else {
-        // Show error message
+        // ❌ Sign-up failed - show error message from Firebase
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(result)),
         );
       }
     }
   }
+
+
 
   // Simple Email Validation
   String? _validateEmail(String? value) {

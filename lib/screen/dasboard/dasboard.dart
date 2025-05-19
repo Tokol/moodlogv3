@@ -3,6 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:moodlog/screen/dasboard/bottomnavigations/mood_home_screen.dart';
 
 import 'bottomnavigations/analytics_screen.dart';
+import 'bottomnavigations/profile_screen.dart';
+import 'help_line_screen.dart';
 import 'mood_selection_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -18,7 +20,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     MoodHomeScreen(),
     AnalyticsScreen(),
     PostScreen(),
-    HelpLineScreen(),
+    HelplineScreen(),
     ProfileScreen(),
   ];
 
@@ -105,18 +107,5 @@ class PostScreen extends StatelessWidget {
   }
 }
 
-class HelpLineScreen extends StatelessWidget {
-  const HelpLineScreen({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text("Help Line Screen")));
-  }
-}
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text("Profile Screen")));
-  }
-}
+

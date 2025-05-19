@@ -255,5 +255,22 @@ class DatabaseHelper {
   }
 
 
+  Future<int> getMoodCount() async {
+    final db = await instance.database;
+    return Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM moods')) ?? 0;
+  }
+
+  Future<int> getTodoCount() async {
+    final db = await instance.database;
+    return Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM todos')) ?? 0;
+  }
+
+  Future<String> getForecast() async {
+    final db = await instance.database;
+    final result = await db.query('forecast', limit: 1);
+    return result.isNotEmpty ? result.first['description'].toString() : "";
+  }
+
+
 
 }

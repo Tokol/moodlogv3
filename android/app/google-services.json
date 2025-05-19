@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "655579117547",
+    "project_id": "moodlog-df186",
+    "storage_bucket": "moodlog-df186.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:655579117547:android:eca5a53a29ec55a1f34bae",
+        "android_client_info": {
+          "package_name": "com.example.moodlog"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3p6oQSk6ezyAeHYhyhJIVg6v0dabUoUg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

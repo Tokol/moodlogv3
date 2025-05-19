@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moodlog/services/auth_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'forgot_password.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -31,8 +34,8 @@ class _SignInScreenState extends State<SignInScreen> {
       });
 
       String? result = await _authService.signIn(
-        _emailController.text,
-        _passwordController.text,
+        _emailController.text.trim(),
+        _passwordController.text.trim(),
       );
 
       setState(() {
@@ -41,8 +44,15 @@ class _SignInScreenState extends State<SignInScreen> {
       });
 
       if (result == null) {
-        // Navigate to dashboard on successful sign-in
-        Navigator.pushNamed(context, 'dash');
+        // ✅ Save login state to SharedPreferences
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setBool('isLoggedIn', true);
+
+        // ✅ Navigate to dashboard
+       // Navigator.pushNamed(context, 'dash');
+
+        Navigator.of(context).pushNamedAndRemoveUntil('dash', (route) => false);
+
       } else {
         // Show error message
         ScaffoldMessenger.of(context).showSnackBar(
@@ -51,6 +61,7 @@ class _SignInScreenState extends State<SignInScreen> {
       }
     }
   }
+
 
   String? _validateEmail(String? value) {
     if (value == null || value.trim().isEmpty) {
@@ -144,7 +155,10 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: GestureDetector(
                       onTap: () {
                         // TODO: Navigate to your Forgot Password screen
-                        debugPrint("Forgot Password tapped");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const ForgotPasswordScreen()),
+                        );
                       },
                       child: const Text(
                         "Forgot Password?",
